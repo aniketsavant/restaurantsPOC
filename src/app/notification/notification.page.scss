@@ -1,0 +1,20 @@
+.toolbar-background {
+    background-color: blue;
+}
+.forSlideImage{
+    height: 210px;
+}
+
+
+.thumnails{
+    overflow-x: scroll;
+    overflow-y: hidden;
+    height:62%;
+}
+h2, h3, p{
+    white-space: nowrap; 
+  width: 98%; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+//   border: 1px solid #000000;
+}

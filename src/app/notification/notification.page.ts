@@ -7,9 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationPage implements OnInit {
 
+  slideOpts = {
+    effect: 'flip'
+  };
+  public isToggled: boolean;
+
+
   constructor() { }
 
   ngOnInit() {
+    this.isToggled = true;
   }
 
 }
