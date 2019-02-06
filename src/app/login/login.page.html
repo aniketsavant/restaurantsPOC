@@ -6,7 +6,7 @@
 
 <ion-content padding text-center>
 
-  <h2><strong> Logo Here</strong></h2>
+  <h2><strong> LOGIN</strong></h2>
   <ion-item>
     <ion-label position="floating">Username/Mobile Number</ion-label>
     <ion-input></ion-input>
@@ -16,9 +16,9 @@
     <ion-input type="Password"></ion-input>
   </ion-item>
   <br />
-  <ion-button shape="full" color="dark">Login</ion-button>
-  <p><a href="#"><Strong>Forgot Password ?</Strong></a></p>
-  <p> <a href="#"><Strong>Sign Up</Strong></a></p>
+  <ion-button shape="full" color="dark" (click)="onLoginClick()">Login</ion-button>
+  <p><a href="/tabs/tab1"><Strong>Forgot Password ?</Strong></a></p>
+  <p> <a href="/register"><Strong>Sign Up</Strong></a></p>
 
 
 </ion-content>
