@@ -10,7 +10,7 @@ export class GallaryComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    alert('gallary view');
+    // alert('gallary view');
   }
 
 }
