@@ -1,4 +1,4 @@
-<ion-list *ngFor='let review of reviewsList'>
+<ion-list *ngFor='let review of reviewsList;let i =index'>
     <ion-item>
         <ion-card>
             <ion-card-header>
@@ -9,7 +9,12 @@
                         </ion-col>
                         <ion-col>
                             <ion-card-title> {{review.review.user.name}}</ion-card-title>
-                            <ion-card-subtitle>{{review.review.review_time_friendly}}</ion-card-subtitle>
+                            <ion-card-subtitle>{{review.review.review_time_friendly}}</ion-card-subtitle>                            
+                            <i (click)="onLikeClick(review,i)">
+                                <ion-icon name="thumbs-up" [ngClass]="[review.likeStyle]"></ion-icon>
+                            </i> {{review.likeCount}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i (click)="onDislikeClick(review,i)">
+                                <ion-icon name="thumbs-down" [ngClass]="[review.dislikeStyle]"></ion-icon>
+                            </i> {{review.dislikeCount}}
                         </ion-col>
                     </ion-row>
                 </ion-grid>
