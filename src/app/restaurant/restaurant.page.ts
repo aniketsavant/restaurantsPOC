@@ -27,11 +27,11 @@ export class RestaurantPage implements OnInit {
     id: '40'
   }];
   selectedData;
-  constructor(private restaurantService: RestaurantService,
-    private router: Router) {
-
+  constructor(private restaurantService: RestaurantService, private router: Router) {
   }
+
   ngOnInit() { }
+
   search() {
     console.log('data', this.data);
     this.selectedData = this.data.filter(a => {
@@ -47,7 +47,7 @@ export class RestaurantPage implements OnInit {
     this.restaurantService.getRestaurants(this.city_id).subscribe(
       (data: IRestaurantCollection) => {
         this.restaurants_collection = data.restaurants;
-        for (const  obj of this.restaurants_collection) {
+        for (const obj of this.restaurants_collection) {
           obj.restaurant.icon = 'heart-empty';
           obj.restaurant.favourite = false;
         }
@@ -61,7 +61,7 @@ export class RestaurantPage implements OnInit {
     this.selectedData = [];
   }
   changeIcon(event, index) {
-    if ( this.restaurants_collection[index].restaurant.favourite) {
+    if (this.restaurants_collection[index].restaurant.favourite) {
       this.restaurants_collection[index].restaurant.favourite = false;
       this.restaurants_collection[index].restaurant.icon = 'heart-empty';
     } else {

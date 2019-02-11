@@ -1,16 +1,25 @@
 <ion-list *ngFor='let review of reviewsList'>
-  <ion-item>
-      <ion-card>
-          <ion-card-header>
-              <ion-card-title><ion-avatar><img [src]="review.review.user.profile_image"></ion-avatar>
-                {{review.review.user.name}}</ion-card-title>
-            <ion-card-subtitle>{{review.review.review_time_friendly}}</ion-card-subtitle>
-          
-          </ion-card-header>
-          <ion-card-content>
-              {{review.review.review_text}}
-              <!-- {{review.review..timestamp}} -->
-          </ion-card-content>
+    <ion-item>
+        <ion-card>
+            <ion-card-header>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col size='4'>
+                            <ion-avatar><img [src]="review.review.user.profile_image"></ion-avatar>
+                        </ion-col>
+                        <ion-col>
+                            <ion-card-title> {{review.review.user.name}}</ion-card-title>
+                            <ion-card-subtitle>{{review.review.review_time_friendly}}</ion-card-subtitle>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+
+            </ion-card-header>
+            <ion-card-content>
+                {{review.review.review_text}}
+                <!-- {{review.review..timestamp}} -->
+            </ion-card-content>
         </ion-card>
-   </ion-item>
+    </ion-item>
 </ion-list>

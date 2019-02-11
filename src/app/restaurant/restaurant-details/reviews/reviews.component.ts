@@ -11,7 +11,7 @@ export class ReviewsComponent implements OnInit {
   constructor(private restaurantService: RestaurantService) { }
 
   ngOnInit() {
-    alert('hello-reviews');
+    // alert('hello-reviews');
     const rest_id = this.restaurantService.restaurant.restaurant.R.res_id;
     console.log('details of restau:', this.restaurantService.restaurant.restaurant.R.res_id);
     this.restaurantService.getReviews(rest_id).subscribe(

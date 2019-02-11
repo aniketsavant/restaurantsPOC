@@ -13,7 +13,7 @@ export class RestaurantDetailsPage implements OnInit {
 
   ngOnInit() {
     this.restaurant = this.restaurantService.restaurant;
-    console.log('details',this.restaurant);
+    console.log('details', this.restaurant);
   }
 
 }
