@@ -10,20 +10,43 @@ import { ReviewsComponent } from './reviews/reviews.component';
 import { GallaryComponent } from './gallary/gallary.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: RestaurantDetailsPage,
-    pathMatch: 'full'
-    //  children: [
-    //   {
-    //     path: 'reviews',
-    //     component: ReviewsComponent
-    //   }]
-  },
-  {
-      path: '/reviews',
-      component: ReviewsComponent
-  }
+//   {
+//     path: '',
+//     component: RestaurantDetailsPage,
+//     children: [
+      {
+        path: '',
+        component: RestaurantDetailsPage
+      },
+      {
+        path: 'reviews',
+        component: ReviewsComponent
+
+        // children: [
+        //   {
+        //     path: '',
+        //     component: ReviewsComponent
+        //   }
+        // ]
+      },
+      {
+        path: 'gallary',
+        component: GallaryComponent
+
+        // children: [
+        //   {
+        //     path: '',
+        //     component: GallaryComponent
+        //   }
+        // ]
+      },
+      // {
+      //   path: '',
+      //   redirectTo: '/tabs/restaurants/restaurant-details',
+      //   pathMatch: 'full'
+      // }
+    // ]
+//   }
 ];
 
 @NgModule({
@@ -35,4 +58,4 @@ const routes: Routes = [
   ],
   declarations: [RestaurantDetailsPage, ReviewsComponent, GallaryComponent]
 })
-export class RestaurantDetailsPageModule {}
+export class RestaurantDetailsPageModule { }

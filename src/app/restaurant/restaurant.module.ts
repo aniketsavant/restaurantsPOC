@@ -6,38 +6,55 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { RestaurantPage } from './restaurant.page';
-import { RestaurantDetailsPage } from './restaurant-details/restaurant-details.page';
-import { ReviewsComponent } from './restaurant-details/reviews/reviews.component';
-import { GallaryComponent } from './restaurant-details/gallary/gallary.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: RestaurantPage,
-    // children: [
-    //   {
-    //     path: 'restaurant-details',
-    //     loadChildren: './restaurant-details/restaurant-details.module#RestaurantDetailsPageModule'
-    //   },
-    //   {
-    //     path: '',
-    //     redirectTo: '/tabs/restaurants/restaurant-details',
-    //     pathMatch: 'full'
-    //   }
-    // ]
-  },
-  {
-    path: 'restaurant-details',
-    component: RestaurantDetailsPage,
-  },
-  {
-    path: 'reviews',
-    component: ReviewsComponent
-  },
-  {
-    path: 'details',
-    component: GallaryComponent
-  }
+  // {
+  //   path: '',
+  //   component: RestaurantPage,
+  //   children: [
+      {
+        path: '',
+        component: RestaurantPage
+      },
+      {
+        path: 'restaurant-details',
+        loadChildren: './restaurant-details/restaurant-details.module#RestaurantDetailsPageModule'
+        // children: [
+        //   {
+        //     path: '',
+        //     loadChildren: './restaurant-details/restaurant-details.module#RestaurantDetailsPageModule'
+        //   }
+        // ]
+      },
+      // {
+      //   path: '',
+      //   redirectTo: '/tabs/restaurants',
+      //   pathMatch: 'full'
+      // }
+  //   ]
+  // },
+  // {
+  //   path: 'restaurant-details',
+  //   // component: RestaurantDetailsPage,
+  //   loadChildren: './restaurant-details/restaurant-details.module#RestaurantDetailsPageModule'
+  //   //     {
+  //   //       path: '',
+  //   //       component: RestaurantDetailsPage,
+  //   //     },
+  //   //     {
+  //   //       path: 'reviews',
+  //   //       component: ReviewsComponent
+  //   //     }
+  //   //   ]
+  // },
+  // // {
+  // //   path: 'reviews',
+  // //   component: ReviewsComponent
+  // // },
+  // {
+  //   path: 'details',
+  //   component: GallaryComponent
+  // }
 ];
 
 @NgModule({
@@ -47,6 +64,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [RestaurantPage, RestaurantDetailsPage, ReviewsComponent, GallaryComponent]
+  declarations: [RestaurantPage,]
 })
 export class RestaurantPageModule { }
