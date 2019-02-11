@@ -6,11 +6,37 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { RestaurantPage } from './restaurant.page';
+import { RestaurantDetailsPage } from './restaurant-details/restaurant-details.page';
+import { ReviewsComponent } from './restaurant-details/reviews/reviews.component';
+import { GallaryComponent } from './restaurant-details/gallary/gallary.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: RestaurantPage
+    component: RestaurantPage,
+    // children: [
+    //   {
+    //     path: 'restaurant-details',
+    //     loadChildren: './restaurant-details/restaurant-details.module#RestaurantDetailsPageModule'
+    //   },
+    //   {
+    //     path: '',
+    //     redirectTo: '/tabs/restaurants/restaurant-details',
+    //     pathMatch: 'full'
+    //   }
+    // ]
+  },
+  {
+    path: 'restaurant-details',
+    component: RestaurantDetailsPage,
+  },
+  {
+    path: 'reviews',
+    component: ReviewsComponent
+  },
+  {
+    path: 'details',
+    component: GallaryComponent
   }
 ];
 
@@ -21,6 +47,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [RestaurantPage]
+  declarations: [RestaurantPage, RestaurantDetailsPage, ReviewsComponent, GallaryComponent]
 })
-export class RestaurantPageModule {}
+export class RestaurantPageModule { }
