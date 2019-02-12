@@ -15,10 +15,6 @@ export class RestaurantService {
   setData(res: Restaurant) {
     this.restaurant = res;
   }
-  // setFavourite(res) {
-  //   this.favourite_list.push(res);
-  // }
-
   /**
    *
    *
@@ -30,7 +26,16 @@ export class RestaurantService {
     const headers: HttpHeaders = new HttpHeaders({
       'user-key': API_KEY
     });
+
     const url = API_URL + `/search?entity_id=${city_id}&entity_type=city`;
+    return this.http.get(url, { headers });
+  }
+
+  getNearByRestaurants(lattitude, longitude) {
+    const headers: HttpHeaders = new HttpHeaders({
+      'user-key': API_KEY
+    });
+    const url = API_URL + `/search??lat=${lattitude}&lon=${longitude}`;
     return this.http.get(url, { headers });
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { File } from '@ionic-native/file/ngx';
 @Component({
   selector: 'app-gallary',
   templateUrl: './gallary.component.html',
@@ -9,7 +10,8 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 export class GallaryComponent implements OnInit {
   images = [];
   path = '../../../../assets/gallary/';
-  constructor(private socialSharing: SocialSharing) { }
+  constructor(private socialSharing: SocialSharing, private file: File
+  ) { }
 
   ngOnInit() {
     this.images = [{ url: `${this.path}1.jpg` },
@@ -36,10 +38,40 @@ export class GallaryComponent implements OnInit {
   onShareClick(index) {
     // index = 0;
     console.log(index);
-    // var msg = this.compilemsg(index);
-    this.socialSharing.share("hello gayatri", null, null, this.images[index].url);
+    this.socialSharing.share('hello gayatri', null, null, this.images[index].url);
+
+    const imageName = `${index + 1}.jpg`;
+    const ROOT_DIRECTORY = 'file:///sdcard//';
+    const downloadFolderName = 'tempDownloadFolder';
+
+    // Create a folder in memory location
+    this.file.createDir(ROOT_DIRECTORY, downloadFolderName, true)
+      .then((entries) => {
+
+        // Copy our asset/img/FreakyJolly.jpg to folder we created
+        this.file.copyFile(this.file.applicationDirectory + 'www/assets/gallary/',
+         imageName, ROOT_DIRECTORY + downloadFolderName + '//', imageName)
+          .then((entries) => {
+
+            // Common sharing event will open all available application to share
+            this.socialSharing.share('Message', 'Subject', ROOT_DIRECTORY + downloadFolderName + "/" + imageName, imageName)
+              .then((entries) => {
+              
+                console.log('success ' + JSON.stringify(entries));
+              })
+              .catch((error) => {
+                alert('error ' + JSON.stringify(error));
+              });
+          })
+          .catch((error) => {
+            alert('error ' + JSON.stringify(error));
+          });
+      })
+      .catch((error) => {
+        alert('error ' + JSON.stringify(error));
+      });
   }
-  onCameraClick(){
+  onCameraClick() {
 
   }
 }
