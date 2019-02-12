@@ -15,9 +15,9 @@
   <!-- <a routerLink='restaurant-details'>click me</a>
   <ion-icon  class='favourite' color='danger' [name]="icon" (click)='changeIcon()'></ion-icon> -->
 
- <!-- Scrollable Segment -->
+  <!-- Scrollable Segment -->
 
-  <ion-card *ngFor="let res of restaurants_collection ; index as i"  (click)='onCardClick(res)'>
+  <ion-card *ngFor="let res of restaurants_collection ; index as i" (click)='onCardClick(res)'>
 
     <ion-card-header>
       <ion-card-subtitle><img [src]='res.restaurant.featured_image'>
@@ -25,25 +25,29 @@
           <div>{{res.restaurant.user_rating.aggregate_rating}}
             <ion-icon name="star"></ion-icon>
           </div>
-          </div>
-          <div class="myFavouriteOverlay">
-              <div>
-                  <ion-icon  class='favourite'  color='danger' [name]="res.restaurant.icon"  (click)='$event.stopPropagation();changeIcon(res, i)'></ion-icon>
-              </div>
-              </div>
+        </div>
       </ion-card-subtitle>
-      <ion-card-title>{{res.restaurant.name}} 
-
-      </ion-card-title>
+      <ion-grid>
+        <ion-row>
+          <ion-col size="10" no-padding>
+            <ion-card-title><strong>{{res.restaurant.name}} </strong></ion-card-title>
+          </ion-col>
+          <ion-col no-padding>
+            <div class="myFavouriteOverlay" text-right>
+              <div>
+                <ion-icon class='favourite' color='danger' [name]="res.restaurant.icon"
+                  (click)='$event.stopPropagation();changeIcon(res, i)'></ion-icon>
+              </div>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-header>
-    <ion-card-content>
-      <ion-item>
-        <ion-label> {{res.restaurant.cuisines}} </ion-label>
-        <!-- <ul *ngFor = "let item of res.restaurant.cuisines.split(',')">
+    <ion-card-content >
+      <ion-label> {{res.restaurant.cuisines}} </ion-label>
+      <!-- <ul *ngFor = "let item of res.restaurant.cuisines.split(',')">
         <li>{{item}}</li>
        </ul> -->
-      </ion-item>
-      
     </ion-card-content>
   </ion-card>
 </ion-content>
