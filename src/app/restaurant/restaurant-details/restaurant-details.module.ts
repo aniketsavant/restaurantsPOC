@@ -15,65 +15,9 @@ const routes: Routes = [
   {
     path: '',
     component: RestaurantDetailsPage,
-  },
-  {
-    path: 'details',
-    component: DetailsComponent
-  },
-  {
-    path: 'reviews',
-    component: ReviewsComponent
-
-
-  },
-  {
-    path: 'gallary',
-    component: GallaryComponent
-
   }
 ];
 
-// const routes: Routes = [
-//   {
-//     path: '',
-//     component: RestaurantDetailsPage,
-//     children: [
-//       {
-//         path: 'details',
-//         children: [
-//           {
-//             path: '',
-//             component: DetailsComponent
-//           }
-//         ]
-//       },
-//       {
-//         path: 'reviews',
-//         children: [
-//           {
-//             path: '',
-//             component: ReviewsComponent
-
-//           }
-//         ]
-//       },
-//       {
-//         path: 'gallary',
-//         children: [
-//           {
-//             path: '',
-//            component: GallaryComponent
-//           }
-//         ]
-//       },
-//       {
-//         path: '',
-//         redirectTo: '/tabs/restaurants/restaurent-details/details',
-//         pathMatch: 'full'
-//       }
-//     ]
-//   }
-// ];
 
 @NgModule({
   imports: [

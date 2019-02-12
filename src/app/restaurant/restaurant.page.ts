@@ -33,7 +33,7 @@ export class RestaurantPage implements OnInit {
   ngOnInit() { }
 
   search() {
-    console.log('data', this.data);
+    // console.log('data', this.data);
     this.selectedData = this.data.filter(a => {
       console.log(this.searchtext);
       console.log(a.name.includes(this.searchtext));

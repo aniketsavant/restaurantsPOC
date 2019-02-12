@@ -1,1 +1,37 @@
-<p>gallary view</p>
+<ion-slides #mySlider class="image-slider" loop="true" slidesPerView="2" pager (ionSlidesDidLoad)="$event.stopPropagation();slidesDidLoad(mySlider)">
+    <ion-slide *ngFor="let image of images; let i = index;">
+        <img [src]="image.url" class="thumb-img" imageViewer />
+
+    </ion-slide>
+</ion-slides>
+
+<ion-grid>
+    <div *ngFor="let image of images; let i = index;">
+        <ion-row *ngIf="i % 3 === 0">
+            <ion-col col-4>
+                <img [src]="images[i].url" />
+                <div class="myGallaryOverlay">
+                    <div>
+                        <ion-icon class='share' name="share" color='primary' (click)='$event.stopPropagation();onShareClick(i)'></ion-icon>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col col-4>
+                <img [src]="images[i+1].url" />
+                <div class="myGallaryOverlay">
+                    <div>
+                        <ion-icon class='share' name="share" color='primary' (click)='$event.stopPropagation();onShareClick(i+1)'></ion-icon>
+                    </div>
+                </div>
+            </ion-col>
+            <ion-col col-4>
+                <img [src]="images[i+2].url" />
+                <div class="myGallaryOverlay">
+                    <div>
+                        <ion-icon class='share' name="share" color='primary' (click)='$event.stopPropagation();onShareClick(i+2)'></ion-icon>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+    </div>
+</ion-grid>

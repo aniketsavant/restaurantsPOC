@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
 
-    <ion-searchbar [(ngModel)]="searchtext" (ionInput)="search()" debounce=500>
+    <ion-searchbar [(ngModel)]="searchtext" (ionInput)="search()" >
     </ion-searchbar>
     <ion-list>
       <ion-item *ngFor="let res of selectedData" (click)='onItemClick(res)'>
@@ -20,7 +20,7 @@
   <ion-card *ngFor="let res of restaurants_collection ; index as i"  (click)='onCardClick(res)'>
 
     <ion-card-header>
-      <ion-card-subtitle><img [src]='res.restaurant.featured_image'>
+      <ion-card-subtitle><img [src]='res.restaurant.thumb'>
         <div class="myOverlay">
           <div>{{res.restaurant.user_rating.aggregate_rating}}
             <ion-icon name="star"></ion-icon>

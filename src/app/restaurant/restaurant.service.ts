@@ -15,9 +15,17 @@ export class RestaurantService {
   setData(res: Restaurant) {
     this.restaurant = res;
   }
-  setFavourite(res) {
-    this.favourite_list.push(res);
-  }
+  // setFavourite(res) {
+  //   this.favourite_list.push(res);
+  // }
+
+  /**
+   *
+   *
+   * @param {*} city_id
+   * @returns
+   * @memberof RestaurantService
+   */
   getRestaurants(city_id) {
     const headers: HttpHeaders = new HttpHeaders({
       'user-key': API_KEY
