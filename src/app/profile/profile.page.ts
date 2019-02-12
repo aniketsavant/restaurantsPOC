@@ -7,11 +7,13 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
   styleUrls: ['./profile.page.scss'],
 })
 export class ProfilePage implements OnInit {
+  userProfileImage: String;
 
   constructor(private camera: Camera) { }
 
 
   ngOnInit() {
+    this.userProfileImage = 'assets/jpg.jpg';
   }
 
   /**
@@ -27,9 +29,10 @@ export class ProfilePage implements OnInit {
 
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
+      this.userProfileImage = imageData;
       // If it's base64 (DATA_URL):
       const base64Image = 'data:image/jpeg;base64,' + imageData;
-      console.log(base64Image);
+      // console.log(base64Image);
     }, (err) => {
       // Handle error
     });
