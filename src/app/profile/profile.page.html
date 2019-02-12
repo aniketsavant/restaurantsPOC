@@ -6,4 +6,40 @@
 
 <ion-content padding>
 
+  <ion-grid>
+    <ion-row>
+      <ion-col size='4'>
+        <img src="assets/jpg.jpg" class="userprofileImage">
+        <ion-button size="small" class="taleNewPhoto" (click)="onTakePhotoClick()">Take Photo</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-row>
+          <ion-item no-padding>
+            <ion-input placeholder="First Name"></ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item no-padding>
+            <ion-input placeholder="Middle Name"></ion-input>
+          </ion-item>
+        </ion-row>
+        <ion-row>
+          <ion-item no-padding>
+            <ion-input placeholder="Last name"></ion-input>
+          </ion-item>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="horizontalLine"></div>
+  <ion-item>
+    <ion-input type="password" placeholder="Enter New Password"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-textarea placeholder="enter discription about you."></ion-textarea>
+  </ion-item>
+  <br>
+  <ion-button expand="full" color="secondary">Save</ion-button>
+  <ion-button expand="full" color="dark">Check you favourite list </ion-button>
+
 </ion-content>
