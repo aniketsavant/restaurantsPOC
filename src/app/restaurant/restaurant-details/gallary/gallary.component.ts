@@ -20,21 +20,22 @@ export class GallaryComponent implements OnInit {
     private restaurantService: RestaurantService, private camera: Camera) { }
 
   ngOnInit() {
-    this.images = [{ url: `${this.path}1.jpg` },
-    { url: `${this.path}2.JPG` },
-    { url: `${this.path}3.jpg` },
-    { url: `${this.path}3.jpg` },
-    { url: `${this.path}4.jpg` },
-    { url: `${this.path}5.jpg` },
-    { url: `${this.path}6.jpg` },
-    { url: `${this.path}7.jpg` },
-    { url: `${this.path}8.jpg` },
-    { url: `${this.path}9.jpg` },
-    { url: `${this.path}10.jpg` },
-    { url: `${this.path}11.jpg` },
-    { url: `${this.path}12.jpg` },
-    { url: `${this.path}13.jpg` },
-    { url: `${this.path}14.jpg` }
+    this.images = [
+      { url: `${this.path}1.jpg` },
+      { url: `${this.path}2.JPG` },
+      { url: `${this.path}3.jpg` },
+      { url: `${this.path}3.jpg` },
+      { url: `${this.path}4.jpg` },
+      { url: `${this.path}5.jpg` },
+      { url: `${this.path}6.jpg` },
+      { url: `${this.path}7.jpg` },
+      { url: `${this.path}8.jpg` },
+      { url: `${this.path}9.jpg` },
+      { url: `${this.path}10.jpg` },
+      { url: `${this.path}11.jpg` },
+      { url: `${this.path}12.jpg` },
+      { url: `${this.path}13.jpg` },
+      { url: `${this.path}14.jpg` }
     ];
   }
   slidesDidLoad(slides: IonSlides) {
@@ -84,14 +85,14 @@ export class GallaryComponent implements OnInit {
       correctOrientation: true,
       encodingType: this.camera.EncodingType.JPEG,
       destinationType: this.camera.DestinationType.FILE_URI
-    }
+    };
 
     this.camera.getPicture(options).then((imageData) => {
-      //needs to import file plugin
-      //split the file and the path from FILE_URI result
+      // needs to import file plugin
+      // split the file and the path from FILE_URI result
       const filename = imageData.substring(imageData.lastIndexOf('/') + 1);
       const path = imageData.substring(0, imageData.lastIndexOf('/') + 1);
-      //then use the method reasDataURL  btw. var_picture is ur image variable
+      // then use the method reasDataURL  btw. var_picture is ur image variable
       this.file.readAsDataURL(path, filename).then(res => this.image = res);
     });
   }

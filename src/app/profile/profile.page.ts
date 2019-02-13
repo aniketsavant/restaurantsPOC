@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { File } from '@ionic-native/file/ngx';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +15,7 @@ export class ProfilePage implements OnInit {
   profileForm: FormGroup;
   profileData: any;
 
-  constructor(private camera: Camera, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private camera: Camera, private router: Router, private formBuilder: FormBuilder, private file: File) { }
 
 
   ngOnInit() {
@@ -50,11 +51,18 @@ export class ProfilePage implements OnInit {
 
     this.camera.getPicture(options).then((imageData) => {
       // imageData is either a base64 encoded string or a file URI
+      const filename = imageData.substring(imageData.lastIndexOf('/') + 1);
+      const path = imageData.substring(0, imageData.lastIndexOf('/') + 1);
+      // then use the method reasDataURL  btw. var_picture is ur image variable
+      this.file.readAsDataURL(path, filename).then(res =>
+        this.userProfileImage = res
+      );
       this.userProfileImage = imageData;
       // If it's base64 (DATA_URL):
-      const base64Image = 'data:image/jpeg;base64,' + imageData;
+      // const base64Image = 'data:image/jpeg;base64,' + imageData;
     }, (err) => {
       // Handle error
+      console.log(err);
     });
   }
   /**
