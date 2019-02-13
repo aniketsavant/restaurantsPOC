@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +10,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 export class ProfilePage implements OnInit {
   userProfileImage: String;
 
-  constructor(private camera: Camera) { }
+  constructor(private camera: Camera, private router: Router) { }
 
 
   ngOnInit() {
@@ -32,10 +33,16 @@ export class ProfilePage implements OnInit {
       this.userProfileImage = imageData;
       // If it's base64 (DATA_URL):
       const base64Image = 'data:image/jpeg;base64,' + imageData;
-      // console.log(base64Image);
     }, (err) => {
       // Handle error
     });
+  }
+  /**
+   * @description : on logout click; navigate to login page
+   */
+  public onLogoutClick() {
+    // localStorage.clear();
+    this.router.navigate(['']);
   }
 
 }

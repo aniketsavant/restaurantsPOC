@@ -7,18 +7,20 @@
 <ion-content padding text-center>
 
   <h2><strong> LOGIN</strong></h2>
-  <ion-item>
-    <ion-label position="floating">Username/Mobile Number</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Password</ion-label>
-    <ion-input type="Password"></ion-input>
-  </ion-item>
-  <br />
-  <ion-button shape="full" color="dark" (click)="onLoginClick()">Login</ion-button>
-  <p><a href="#"><Strong>Forgot Password ?</Strong></a></p>
-  <p> <a routerLink="/register" ><Strong>Sign Up</Strong></a></p>
+  <form [formGroup]="loginForm" (ngSubmit)="onLoginClick()">
+    <ion-item>
+      <ion-label position="floating">Username/Mobile Number</ion-label>
+      <ion-input formControlName="uName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="Password" formControlName="password"></ion-input>
+    </ion-item>
+    <br />
+    <ion-button type="submit" shape="full" color="dark" [disabled]="!loginForm.valid">Login</ion-button>
+    <p><a href="#"><Strong>Forgot Password ?</Strong></a></p>
+    <p> <a routerLink="/register"><Strong>Sign Up</Strong></a></p>
+  </form>
 
 
 </ion-content>

@@ -9,16 +9,17 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
+// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { NativeGeocoder} from '@ionic-native/native-geocoder/ngx';
+import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule ],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule],
   providers: [
     StatusBar,
     Camera,
@@ -26,7 +27,8 @@ import { File } from '@ionic-native/file/ngx';
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     SocialSharing,
     Geolocation,
-    NativeGeocoder,File
+    NativeGeocoder,
+    File
   ],
   bootstrap: [AppComponent]
 })

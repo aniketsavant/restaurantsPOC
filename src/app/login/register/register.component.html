@@ -7,25 +7,25 @@
 <ion-content padding text-center>
 
   <h2><strong> SIGN UP</strong></h2>
-  <ion-item>
-    <ion-label position="floating">Username/Mobile Number</ion-label>
-    <ion-input></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Password</ion-label>
-    <ion-input type="Password"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Confirm Password</ion-label>
-    <ion-input type="Password"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Email</ion-label>
-    <ion-input type="Email"></ion-input>
-  </ion-item>
-  <br />
-  <ion-button shape="full" color="dark">Sign Up</ion-button> 
-  <p> <a routerLink = ''><Strong>Goto Login</Strong></a></p>
-
-
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Username/Mobile Number</ion-label>
+      <ion-input formControlName="uName"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="Password" formControlName="password"></ion-input>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-label position="floating">Confirm Password</ion-label>
+      <ion-input type="Password" formControlName="cPassword"></ion-input>
+    </ion-item> -->
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input type="Email" formControlName="emailId"></ion-input>
+    </ion-item>
+    <br />
+    <ion-button type="submit" shape="full" color="dark" [disabled]="!registerForm.valid">Sign Up</ion-button>
+    <p> <a routerLink=''><Strong>Goto Login</Strong></a></p>
+  </form>
 </ion-content>

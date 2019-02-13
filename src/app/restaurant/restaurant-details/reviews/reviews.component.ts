@@ -31,6 +31,8 @@ export class ReviewsComponent implements OnInit {
         this.reviewsList = data;
         this.reviewsList = this.reviewsList.user_reviews;
         this.reviewsList.forEach((element, index) => {
+          element.likeCount = Math.floor(Math.random() * (100 - 10 + 1)) + 10;
+          element.dislikeCount = Math.floor(Math.random() * (50 - 1 + 1)) + 1;
           element.likeStyle = this.likeStyle;
           element.dislikeStyle = this.dislikeStyle;
         });
