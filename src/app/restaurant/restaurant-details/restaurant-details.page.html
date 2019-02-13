@@ -5,8 +5,8 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-segment [(ngModel)]='seg'>
-  <ion-segment-button checked value='details'>
+<ion-segment [(ngModel)]='seg' scrollable>
+  <ion-segment-button   checked value='details'>
     <ion-label> Details</ion-label>
   </ion-segment-button>
   <ion-segment-button value='reviews'>
@@ -19,10 +19,8 @@
 <ion-content>
 
   <div [ngSwitch]='seg'>
-    <app-details *ngSwitchCase="'details'"></app-details>
-
-    <app-reviews *ngSwitchCase="'reviews'"></app-reviews>
-
-    <app-gallary *ngSwitchCase="'gallary'"></app-gallary>
+        <app-details *ngSwitchCase="'details'"></app-details>
+        <app-reviews *ngSwitchCase="'reviews'"></app-reviews>
+        <app-gallary *ngSwitchCase="'gallary'"></app-gallary>
   </div>
 </ion-content>

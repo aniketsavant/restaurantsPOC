@@ -2,7 +2,7 @@
   <ion-toolbar>
 
     <ion-searchbar [(ngModel)]="searchtext" (ionInput)="search()" >
-    </ion-searchbar>
+    </ion-searchbar><ion-icon name="locate" color = 'primary' (click) = 'getLocation()'></ion-icon>
     <ion-list>
       <ion-item *ngFor="let res of selectedData" (click)='onItemClick(res)'>
         {{res.name}}
@@ -12,11 +12,6 @@
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
-  <!-- <a routerLink='restaurant-details'>click me</a>
-  <ion-icon  class='favourite' color='danger' [name]="icon" (click)='changeIcon()'></ion-icon> -->
-
-  <!-- Scrollable Segment -->
-
   <ion-card *ngFor="let res of restaurants_collection ; index as i" (click)='onCardClick(res)'>
 
     <ion-card-header>

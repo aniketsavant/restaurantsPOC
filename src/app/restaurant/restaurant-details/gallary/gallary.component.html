@@ -1,7 +1,10 @@
-<ion-slides #mySlider class="image-slider" loop="true" slidesPerView="2" pager (ionSlidesDidLoad)="$event.stopPropagation();slidesDidLoad(mySlider)">
+<ion-slides #mySlider class="image-slider" loop="true" slidesPerView="3" pager (ionSlidesDidLoad)="slidesDidLoad(mySlider)">
+    
+<!-- (ionSlideDidChange)= '$event.stopPropagation();'(ionSlidesDidLoad)="$event.stopPropagation();slidesDidLoad(mySlider)"
+
+(ionSlidesDidLoad)="$event.stopPropagation();slidesDidLoad(mySlider)" -->
     <ion-slide *ngFor="let image of images; let i = index;">
         <img [src]="image.url" class="thumb-img" imageViewer />
-
     </ion-slide>
 </ion-slides>
 
@@ -12,7 +15,7 @@
                 <img [src]="images[i].url" />
                 <div class="myGallaryOverlay">
                     <div>
-                        <ion-icon class='share' name="share" color='primary' (click)='$event.stopPropagation();onShareClick(i)'></ion-icon>
+                        <ion-icon class='share'  name="share" color='primary' (click)='$event.stopPropagation();onShareClick(i)'></ion-icon>
                     </div>
                 </div>
             </ion-col>

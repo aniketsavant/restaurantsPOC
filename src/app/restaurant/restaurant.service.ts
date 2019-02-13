@@ -42,7 +42,7 @@ export class RestaurantService {
     const headers: HttpHeaders = new HttpHeaders({
       'user-key': API_KEY
     });
-    const url = API_URL + `/search??lat=${lattitude}&lon=${longitude}`;
+    const url = API_URL + `/search?lat=${lattitude}&lon=${longitude}`;
     return this.http.get(url, { headers });
   }
 

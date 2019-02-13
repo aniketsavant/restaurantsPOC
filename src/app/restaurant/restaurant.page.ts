@@ -18,12 +18,10 @@ export class RestaurantPage implements OnInit {
   searchtext: string;
   city_id;
   restaurants_collection: Restaurant[];
-  // icon = 'heart-empty';
-  // iflag = false;
   favouriteList;
   lattitude;
   longitude;
-  data = [{
+  cityList = [{
     name: 'pune',
     id: '5'
   },
@@ -49,10 +47,7 @@ export class RestaurantPage implements OnInit {
       this.lattitude = resp.coords.latitude;
       this.longitude = resp.coords.longitude;
       this.getNearByRestaurents();
-
       this.getLocationDetails();
-      // resp.coords.latitude
-      // resp.coords.longitude
     }).catch((error) => {
       console.log('Error getting location', error);
     });
@@ -61,8 +56,8 @@ export class RestaurantPage implements OnInit {
       // data can be a set of coordinates, or an error (if an error occurred).
       this.lattitude = data.coords.latitude;
       this.longitude = data.coords.longitude;
-      // data.coords.latitude
-      // data.coords.longitude
+      this.getNearByRestaurents();
+      this.getLocationDetails();
     });
   }
   getLocationDetails() {
@@ -93,7 +88,7 @@ export class RestaurantPage implements OnInit {
 
   search() {
     if (this.searchtext.length >= 1) {
-      this.selectedData = this.data.filter(a => {
+      this.selectedData = this.cityList.filter(a => {
         return a.name.includes(this.searchtext.toLowerCase());
       });
     }
@@ -128,9 +123,7 @@ export class RestaurantPage implements OnInit {
     } else {
       this.restaurants_collection[index].restaurant.favourite = true;
       this.restaurants_collection[index].restaurant.icon = 'heart';
-      // this.iflag = true;
     }
-    // return event;
   }
   onCardClick(res) {
     this.restaurantService.setData(res);
