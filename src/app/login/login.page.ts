@@ -57,6 +57,7 @@ export class LoginPage implements OnInit {
     //   });
     //   await alert.present();
     // } else 
+<<<<<<< HEAD
     this.regData = JSON.parse(localStorage.getItem('registerData'));
     if (this.loginForm.value.uName === this.regData.uName && this.loginForm.value.password === this.regData.password) {
       this.router.navigate(['tabs']);
@@ -69,5 +70,19 @@ export class LoginPage implements OnInit {
       });
       await alert.present();
     }
+=======
+    // if (this.loginForm.value.uName === this.regData.uName && this.loginForm.value.password === this.regData.password) {
+    //   this.router.navigate(['tabs']);
+    // } else {
+    //   const alert = await this.alertController.create({
+    //     header: 'Alert',
+    //     // subHeader: 'Oops',
+    //     message: 'Wrong credential.',
+    //     buttons: ['OK']
+    //   });
+    //   await alert.present();
+    // }
+    this.router.navigate(['tabs']);
+>>>>>>> c9f6020347bab166f5c3c40e4a8989275a50c158
   }
 }
