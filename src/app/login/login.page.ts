@@ -18,6 +18,7 @@ export class LoginPage implements OnInit {
    * @description : creating login form and accessing the registered value from local storage.
    */
   ngOnInit() {
+    this.regData = '';
     this.loginForm = this.formBuilder.group({
       uName: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]]

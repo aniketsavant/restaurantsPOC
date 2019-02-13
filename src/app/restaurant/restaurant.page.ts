@@ -49,7 +49,7 @@ export class RestaurantPage implements OnInit {
       this.lattitude = resp.coords.latitude;
       this.longitude = resp.coords.longitude;
       this.getNearByRestaurents();
-      
+
       this.getLocationDetails();
       // resp.coords.latitude
       // resp.coords.longitude
@@ -71,9 +71,10 @@ export class RestaurantPage implements OnInit {
       maxResults: 5
     };
     this.nativeGeocoder.reverseGeocode(this.lattitude, this.longitude, options)
-      .then((result: NativeGeocoderReverseResult[]) => { 
-      //  this.getNearByRestaurents();
-        alert('this is:'+result[0]); console.log(JSON.stringify(result[0])); })
+      .then((result: NativeGeocoderReverseResult[]) => {
+        //  this.getNearByRestaurents();
+        alert('this is:' + result[0]); console.log(JSON.stringify(result[0]));
+      })
       .catch((error: any) => console.log(error));
 
   }

@@ -11,58 +11,20 @@
 
 <ion-content padding>
   <ion-slides pager="true" [options]="slideOpts">
-    <ion-slide>
-      <img src="assets/offer1.png" class="forSlideImage">
-    </ion-slide>
-    <ion-slide>
-      <img src="assets/offer2.jpg" class="forSlideImage">
-    </ion-slide>
-    <ion-slide>
-      <img src="assets/offer3.png" class="forSlideImage">
+    <ion-slide *ngFor="let data of offerImages">
+      <img src="{{data}}" class="forSlideImage">
     </ion-slide>
   </ion-slides>
 
-
-
   <ion-list no-padding class="thumnails" *ngIf="isToggled">
-    <ion-item no-padding>
+    <ion-item no-padding *ngFor="let data of offerData">
       <ion-thumbnail slot="start">
-        <img src="assets/shop1.jpg">
+        <img src="{{data.image}}">
       </ion-thumbnail>
       <ion-label>
-        <h2><strong>Simply Barbeque</strong></h2>
-        <h3>50% Off Total Bill</h3>
-        <p text-right>1 hr</p>
-      </ion-label>
-    </ion-item>
-    <ion-item no-padding>
-      <ion-thumbnail slot="start">
-        <img src="assets/shop2.jpg">
-      </ion-thumbnail>
-      <ion-label>
-        <h2><strong>Publiq</strong></h2>
-        <h3>Lunch Buffet (Veg - Rs. 491, Non-Veg - Rs. 581) AI</h3>
-        <p text-right>1 hr</p>
-      </ion-label>
-    </ion-item>
-    <ion-item no-padding>
-      <ion-thumbnail slot="start">
-        <img src="assets/shop3.jpg">
-      </ion-thumbnail>
-      <ion-label>
-        <h2><strong>Independence Brewing Company</strong></h2>
-        <h3>50% Off Alcohol Bill</h3>
-        <p text-right>2 hr</p>
-      </ion-label>
-    </ion-item>
-    <ion-item no-padding>
-      <ion-thumbnail slot="start">
-        <img src="assets/shop4.jpg">
-      </ion-thumbnail>
-      <ion-label>
-        <h2><strong>Cafe 1730</strong></h2>
-        <h3>50% Off Food Bill</h3>
-        <p text-right>3 hr</p>
+        <h2><strong>{{data.restaurantName}}</strong></h2>
+        <h3>{{data.offer}}</h3>
+        <p text-right>{{data.nitificationTime}}</p>
       </ion-label>
     </ion-item>
   </ion-list>

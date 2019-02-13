@@ -1,0 +1,26 @@
+[
+    {
+        "image": "assets/shop1.jpg",
+        "restaurantName": "Simply Barbeque",
+        "offer": "50% Off Total Bill",
+        "nitificationTime": "1 hr"
+    },
+    {
+        "image": "assets/shop2.jpg",
+        "restaurantName": "Publiq",
+        "offer": "Lunch Buffet (Veg - Rs. 491, Non-Veg - Rs. 581) AI",
+        "nitificationTime": "1 hr"
+    },
+    {
+        "image": "assets/shop3.jpg",
+        "restaurantName": "Independence Brewing Company",
+        "offer": "50% Off Alcohol Bill",
+        "nitificationTime": "2 hr"
+    },
+    {
+        "image": "assets/shop4.jpg",
+        "restaurantName": "Cafe 1730",
+        "offer": "50% Off Food Bill",
+        "nitificationTime": "3 hr"
+    }
+]
