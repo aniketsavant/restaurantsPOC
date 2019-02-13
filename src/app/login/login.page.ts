@@ -54,16 +54,17 @@ export class LoginPage implements OnInit {
     //   });
     //   await alert.present();
     // } else 
-    if (this.loginForm.value.uName === this.regData.uName && this.loginForm.value.password === this.regData.password) {
-      this.router.navigate(['tabs']);
-    } else {
-      const alert = await this.alertController.create({
-        header: 'Alert',
-        // subHeader: 'Oops',
-        message: 'Wrong credential.',
-        buttons: ['OK']
-      });
-      await alert.present();
-    }
+    // if (this.loginForm.value.uName === this.regData.uName && this.loginForm.value.password === this.regData.password) {
+    //   this.router.navigate(['tabs']);
+    // } else {
+    //   const alert = await this.alertController.create({
+    //     header: 'Alert',
+    //     // subHeader: 'Oops',
+    //     message: 'Wrong credential.',
+    //     buttons: ['OK']
+    //   });
+    //   await alert.present();
+    // }
+    this.router.navigate(['tabs']);
   }
 }

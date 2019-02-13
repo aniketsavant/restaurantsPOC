@@ -1,3 +1,5 @@
+<ion-button expand = "full" (click) = "uploadImage()">Upload Image</ion-button>
+<ion-img  [(ngModel)] = 'image' [src] = 'image' *ngIf = 'image'></ion-img>
 <ion-slides #mySlider class="image-slider" loop="true" slidesPerView="3" pager (ionSlidesDidLoad)="slidesDidLoad(mySlider)">
     
 <!-- (ionSlideDidChange)= '$event.stopPropagation();'(ionSlidesDidLoad)="$event.stopPropagation();slidesDidLoad(mySlider)"
