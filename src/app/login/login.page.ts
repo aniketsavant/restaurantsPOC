@@ -23,7 +23,10 @@ export class LoginPage implements OnInit {
       uName: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
-    this.regData = JSON.parse(localStorage.getItem('registerData'));
+    this.loginForm.patchValue({
+      uName: '',
+      password: ''
+    });
   }
 
   /**
@@ -54,6 +57,7 @@ export class LoginPage implements OnInit {
     //   });
     //   await alert.present();
     // } else 
+    this.regData = JSON.parse(localStorage.getItem('registerData'));
     if (this.loginForm.value.uName === this.regData.uName && this.loginForm.value.password === this.regData.password) {
       this.router.navigate(['tabs']);
     } else {
