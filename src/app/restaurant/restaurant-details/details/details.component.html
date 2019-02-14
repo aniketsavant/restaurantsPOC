@@ -1,30 +1,12 @@
 <ion-card>
   <ion-card-header>
     <ion-card-subtitle><img [src]='restaurant.restaurant.featured_image'></ion-card-subtitle>
-    <!-- <div class="myOverlay">
-      <div>{{restaurant.restaurant.user_rating.aggregate_rating}}
-        <ion-icon name="star"></ion-icon>
-      </div>
-    </div>
-    <div class="myFavouriteOverlay">
-      <div>
-        <ion-icon class='favourite' color='danger' [name]="restaurant.restaurant.icon"></ion-icon>
-      </div>
-    </div>
-    <ion-card-title>{{restaurant.restaurant.name}}
-    </ion-card-title> -->
-
     <ion-grid>
       <ion-row>
         <ion-col size="8" no-padding>
           <ion-card-title><strong>{{restaurant.restaurant.name}} </strong></ion-card-title>
         </ion-col>
         <ion-col >
-          <!-- <div class="myOverlay">
-            <div>{{restaurant.restaurant.user_rating.aggregate_rating}}
-              <ion-icon name="star"></ion-icon>
-            </div>
-          </div> -->
           <div class="myFavouriteOverlay">
             <div>
               <ion-icon name="star"></ion-icon>
@@ -38,6 +20,8 @@
     </ion-grid>
   </ion-card-header>
   <ion-card-content>
-    {{restaurant.restaurant.location.address}}
+    {{restaurant.restaurant.location.address}}<br/>
+    <ion-button href = '{{restaurant.restaurant.menu_url}}'>check menu here </ion-button>
+    <ion-button href = '{{restaurant.restaurant.url}}'>For more details </ion-button>
   </ion-card-content>
 </ion-card>

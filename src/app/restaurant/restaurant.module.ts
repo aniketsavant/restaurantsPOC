@@ -19,7 +19,6 @@ const routes: Routes = [
     loadChildren: './restaurant-details/restaurant-details.module#RestaurantDetailsPageModule'
   },
 ];
-
 @NgModule({
   imports: [
     CommonModule,

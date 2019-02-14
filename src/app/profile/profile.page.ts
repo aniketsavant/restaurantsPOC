@@ -35,7 +35,7 @@ export class ProfilePage implements OnInit {
       uName: this.profileData.uName,
       emailId: this.profileData.emailId,
       password: this.profileData.password,
-      discription: this.profileData.description
+      discription: this.profileData.discription
     });
     if (this.profileData.profilePhotoURL && this.profileData.profilePhotoFileName) {
       this.file.readAsDataURL(this.profileData.profilePhotoURL, this.profileData.profilePhotoFileName).then(res =>

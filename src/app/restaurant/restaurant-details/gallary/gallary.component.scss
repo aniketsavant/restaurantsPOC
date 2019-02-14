@@ -1,6 +1,7 @@
 .swiper-slide img {
     width: 100%;
 }
+
 .myGallaryOverlay{
     position: absolute;
     bottom: 0px;
@@ -10,4 +11,7 @@
     }
     .icon {
         font-size: 130%; //Preferred size here
+    }
+    .gridImage{
+        height: -1%;
     }

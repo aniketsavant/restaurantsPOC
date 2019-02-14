@@ -25,7 +25,6 @@ export class RestaurantPage implements OnInit {
   searchtext: string;
   city_id;
   restaurants_collection: Restaurant[];
-  favouriteList;
   latitude;
   longitude;
   cityList = [{
@@ -52,10 +51,6 @@ export class RestaurantPage implements OnInit {
    * @memberof RestaurantPage
    */
   async ngOnInit() {
-    // this.loader = await this.loderCtrl.create({
-    //   message: 'loading restaurants'
-    // });
-    // this.loader.present();
     this.controllersService.presentLoading();
     this.getLocation();
   }
@@ -78,8 +73,6 @@ export class RestaurantPage implements OnInit {
       // data can be a set of coordinates, or an error (if an error occurred).
       this.latitude = data.coords.latitude;
       this.longitude = data.coords.longitude;
-      this.getNearByRestaurants();
-      this.getLocationDetails();
     });
   }
 
@@ -95,7 +88,7 @@ export class RestaurantPage implements OnInit {
     this.nativeGeocoder.reverseGeocode(this.latitude, this.longitude, options)
       .then((result: NativeGeocoderReverseResult[]) => {
         //  this.getNearByRestaurants();
-        this.searchtext = result[0].subLocality + ' ' + result[0].subAdministrativeArea + ','
+        this.searchtext = result[0].subLocality + ' ' + result[0].subAdministrativeArea + ' '
           + result[0].administrativeArea + ',' + result[0].countryName;
       })
       .catch((error: any) => console.log(error));
@@ -133,6 +126,13 @@ export class RestaurantPage implements OnInit {
       });
     }
   }
+
+  /**
+   * @description shows list of restaurants in given city
+   *
+   * @param {*} res
+   * @memberof RestaurantPage
+   */
   async onItemClick(res) {
     this.searchtext = res.name;
     this.city_id = res.id;
@@ -152,6 +152,13 @@ export class RestaurantPage implements OnInit {
   removeFocus() {
     this.selectedData = [];
   }
+
+  /**
+   * @description changes favourites icon on click
+   *
+   * @param {*} index
+   * @memberof RestaurantPage
+   */
   changeIcon(index) {
     if (this.restaurants_collection[index].restaurant.favourite) {
       this.restaurants_collection[index].restaurant.favourite = false;
@@ -161,6 +168,13 @@ export class RestaurantPage implements OnInit {
       this.restaurants_collection[index].restaurant.icon = 'heart';
     }
   }
+
+  /**
+   * @description navigation to details page
+   *
+   * @param {*} res
+   * @memberof RestaurantPage
+   */
   onCardClick(res) {
     this.restaurantService.setData(res);
     this.router.navigate(['/tabs/restaurants/restaurant-details']);

@@ -1,49 +1,15 @@
-// .autocomplete {
-// 	width: 100%;
 
-// 	ion-searchbar {
-// 		padding: 1px !important;
-// 	}
-
-// 	ion-list {
-// 		position: absolute;
-// 		width: inherit;
-// 		overflow-y: scroll;
-// 		max-height: 150%;
-// 		z-index: 999;
-
-// 		ion-item {
-
-// 			img {
-// 				max-height: 2.5rem;
-// 				width: auto;
-// 				margin: auto;
-// 				display: block;
-// 			}
-// 		}
-
-// 		ion-item:hover {
-// 			cursor: pointer;
-// 			background: #f1f1f1
-// 		}
-// 	}
-// }
-ul { display: inline-block;padding:0; } 
-img{
+	ion-searchbar {
+    padding: 1px !important;
+	}
+  img{
     width:100%;
     height:100%;
   }
-  
-  .myCard{
-    position:relative;
-  
-  }
-  
   .myOverlay{
-     
-        position: absolute;
-        top: 0px;
-        right: 0px;
+      position: absolute;
+      top: 0px;
+      right: 0px;
       background: #00cc00;
       color: #fff;
   
@@ -52,9 +18,10 @@ img{
     position: absolute;
     bottom: 0px;
     right: 0px;
-//   background: #00cc00;
-//   color: #fff;
   }
   .favourite {
     font-size: 130%; //Preferred size here
 }
+// ion-content{
+//   --ion-background-color:#4d4d4d !important;
+// }

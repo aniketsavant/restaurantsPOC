@@ -56,9 +56,6 @@ export class RestaurantService {
     const url = API_URL + `/reviews?res_id=${res_id}`;
     return this.http.get(url, { headers });
   }
-
- 
-
 }
 
 

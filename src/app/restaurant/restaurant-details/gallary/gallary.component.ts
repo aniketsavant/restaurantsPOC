@@ -12,11 +12,9 @@ import { RestaurantService } from '../../restaurant.service';
 })
 export class GallaryComponent implements OnInit {
   images = [];
-  image;
   path = '../../../../assets/gallary/';
   constructor(private socialSharing: SocialSharing, private file: File,
     private restaurantService: RestaurantService, private camera: Camera) { }
-
   ngOnInit() {
     this.images = [
       `${this.path}1.jpg`,
@@ -35,24 +33,35 @@ export class GallaryComponent implements OnInit {
       `${this.path}13.jpg`,
       `${this.path}14.jpg`
     ];
-
   }
+
+  /**
+   * @description plays the slide show
+   *
+   * @param {IonSlides} slides
+   * @memberof GallaryComponent
+   */
   slidesDidLoad(slides: IonSlides) {
     slides.startAutoplay();
   }
 
+  /**
+   * @description shares clicked image on social media
+   *
+   * @param {*} index
+   * @memberof GallaryComponent
+   */
   onShareClick(index) {
-    // index = 0;
-    console.log(this.images[index + 1]);
+    console.log(this.images[index]);
 
-    const imageName = this.images[index + 1];
+    const imageName = this.images[index].substring(this.images[index].lastIndexOf('/') + 1);
+    console.log(imageName);
     const ROOT_DIRECTORY = 'file:///sdcard//';
     const downloadFolderName = 'tempDownloadFolder';
 
     // Create a folder in memory location
     this.file.createDir(ROOT_DIRECTORY, downloadFolderName, true)
       .then((entries) => {
-
         // Copy our asset/img/FreakyJolly.jpg to folder we created
         this.file.copyFile(this.file.applicationDirectory + 'www/assets/gallary/',
           imageName, ROOT_DIRECTORY + downloadFolderName + '//', imageName)
@@ -64,17 +73,23 @@ export class GallaryComponent implements OnInit {
                 console.log('success ' + JSON.stringify(entries));
               })
               .catch((error) => {
-                alert('error ' + JSON.stringify(error));
+                alert('error mesg1 ' + JSON.stringify(error));
               });
           })
           .catch((error) => {
-            alert('error ' + JSON.stringify(error));
+            alert('error mesg2' + JSON.stringify(error));
           });
       })
       .catch((error) => {
-        alert('error ' + JSON.stringify(error));
+        alert('error mesg3' + JSON.stringify(error));
       });
   }
+
+  /**
+   * @description captures image through device camera and shows it in gallery 
+   *
+   * @memberof GallaryComponent
+   */
   uploadImage() {
     const options: CameraOptions = {
       quality: 100,
@@ -84,15 +99,11 @@ export class GallaryComponent implements OnInit {
       encodingType: this.camera.EncodingType.JPEG,
       destinationType: this.camera.DestinationType.FILE_URI
     };
-
     this.camera.getPicture(options).then((imageData) => {
-      // needs to import file plugin
       // split the file and the path from FILE_URI result
       const filename = imageData.substring(imageData.lastIndexOf('/') + 1);
       const path = imageData.substring(0, imageData.lastIndexOf('/') + 1);
-      //then use the method reasDataURL  btw. var_picture is ur image variable
-      this.file.readAsDataURL(path, filename).then(res => { alert("res"+res); this.images.push(res); });
-
+      this.file.readAsDataURL(path, filename).then(res => this.images.push(res));
     });
     this.images.push(`${this.path}15.jpg`);
   }

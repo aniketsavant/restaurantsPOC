@@ -1,40 +1,35 @@
 <ion-button expand = "full" (click) = "uploadImage()">Upload Image</ion-button>
 <ion-img  [(ngModel)] = 'image' [src] = 'image' *ngIf = 'image'></ion-img>
 <ion-slides #mySlider class="image-slider" loop="true" slidesPerView="3" pager (ionSlidesDidLoad)="slidesDidLoad(mySlider)">
-    
-<!-- (ionSlideDidChange)= '$event.stopPropagation();'(ionSlidesDidLoad)="$event.stopPropagation();slidesDidLoad(mySlider)"
-
-(ionSlidesDidLoad)="$event.stopPropagation();slidesDidLoad(mySlider)" -->
     <ion-slide *ngFor="let image of images; let i = index;">
         <img [src]="image" class="thumb-img" imageViewer />
     </ion-slide>
 </ion-slides>
-
 <ion-grid>
     <div *ngFor="let image of images; let i = index;">
         <ion-row *ngIf="i % 3 === 0">
-            <ion-col col-4  *ngIf = 'images[i]'>
-                <img [src]="images[i]" />
+            <ion-col col-4>
+                <div *ngIf = 'images[i]'>
+                <img class = 'gridImage' [src]="images[i]" />
                 <div class="myGallaryOverlay">
-                    <div>
                         <ion-icon class='share'  name="share" color='primary' (click)='$event.stopPropagation();onShareClick(i)'></ion-icon>
-                    </div>
+                </div>
                 </div>
             </ion-col>
-            <ion-col col-4 *ngIf = 'images[i+1]'>
-                <img [src]="images[i+1]" />
+            <ion-col col-4>
+                <div *ngIf = 'images[i+1]'>
+                <img class = 'gridImage' [src]="images[i+1]" />
                 <div class="myGallaryOverlay">
-                    <div>
                         <ion-icon class='share' name="share" color='primary' (click)='$event.stopPropagation();onShareClick(i+1)'></ion-icon>
-                    </div>
+                </div>
                 </div>
             </ion-col>
-            <ion-col col-4  *ngIf = 'images[i+2]'>
-                <img [src]="images[i+2]" />
+            <ion-col col-4  >
+                    <div *ngIf = 'images[i+2]'>
+                <img class = 'gridImage' [src]="images[i+2]" *ngIf = 'images[i+2]'/>
                 <div class="myGallaryOverlay">
-                    <div>
                         <ion-icon class='share' name="share" color='primary' (click)='$event.stopPropagation();onShareClick(i+2)'></ion-icon>
-                    </div>
+                </div>
                 </div>
             </ion-col>
         </ion-row>
