@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
-
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-
 import { RestaurantService } from '../../restaurant.service';
 
 @Component({
@@ -60,8 +58,8 @@ export class GallaryComponent implements OnInit {
           imageName, ROOT_DIRECTORY + downloadFolderName + '//', imageName)
           .then((entries) => {
             // Common sharing event will open all available application to share
-            this.socialSharing.share(`${this.restaurantService.restaurant.restaurant.name} Check delicious food menu of this restaurent`,
-              'Subject', ROOT_DIRECTORY + downloadFolderName + "/" + imageName, this.restaurantService.restaurant.restaurant.menu_url)
+            this.socialSharing.share(`${this.restaurantService.restaurant.restaurant.name} Check delicious food menu of this restaurant`,
+              'Subject', ROOT_DIRECTORY + downloadFolderName + '/' + imageName, this.restaurantService.restaurant.restaurant.menu_url)
               .then((entries) => {
                 console.log('success ' + JSON.stringify(entries));
               })

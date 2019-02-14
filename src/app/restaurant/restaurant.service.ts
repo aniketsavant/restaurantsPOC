@@ -12,7 +12,7 @@ const API_URL = 'https://developers.zomato.com/api/v2.1';
 export class RestaurantService {
   restaurant: Restaurant;
   favourite_list: number[] = [];
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient ) { }
 
   /**
    * @param  {Restaurant} res
@@ -56,6 +56,8 @@ export class RestaurantService {
     const url = API_URL + `/reviews?res_id=${res_id}`;
     return this.http.get(url, { headers });
   }
+
+ 
 
 }
 

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Restaurant } from '../../iRestaurants';
 import { RestaurantService } from '../../restaurant.service';
-import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-details',
@@ -11,16 +10,10 @@ import { LoadingController } from '@ionic/angular';
 export class DetailsComponent implements OnInit {
 
   restaurant: Restaurant;
-  constructor(private restaurantService: RestaurantService, private loderCtrl: LoadingController) { }
+  constructor(private restaurantService: RestaurantService) { }
 
    ngOnInit() {
-    // const loader = await this.loderCtrl.create({
-    //   message: 'loading restaurents'
-    // });
     this.restaurant = this.restaurantService.restaurant;
-    // loader.present();
-
-    // loader.dismiss();
   }
 
 }

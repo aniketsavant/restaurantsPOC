@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ControllersService } from '../../shared/controllers.service';
 
+import { from } from 'rxjs';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -10,7 +12,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
 
-  constructor(private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, public controllersService: ControllersService) { }
 
   /**
    * @description : for creating registration form.
@@ -26,10 +28,10 @@ export class RegisterComponent implements OnInit {
   /**
    * @description : on registration click
    */
-  public onSubmit() {
+  async onSubmit() {
+    this.controllersService.callForAlert('Success', 'Registered Successfully .');
     localStorage.setItem('registerData', JSON.stringify(this.registerForm.value));
     this.router.navigate(['']);
-
   }
 
 }

@@ -11,8 +11,8 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../restaurant/restaurant.module#RestaurantPageModule'
-          }
+            loadChildren: '../restaurant/restaurant.module#RestaurantPageModule',
+          },
         ]
       },
       {
@@ -20,7 +20,7 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../notification/notification.module#NotificationPageModule'
+            loadChildren: '../notification/notification.module#NotificationPageModule',
           }
         ]
       },

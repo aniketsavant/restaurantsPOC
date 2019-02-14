@@ -3,6 +3,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { File } from '@ionic-native/file/ngx';
+import { ControllersService } from '../shared/controllers.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +16,8 @@ export class ProfilePage implements OnInit {
   profileForm: FormGroup;
   profileData: any;
 
-  constructor(private camera: Camera, private router: Router, private formBuilder: FormBuilder, private file: File) { }
+  constructor(private camera: Camera, private router: Router, private formBuilder: FormBuilder, private file: File,
+    public controllersService: ControllersService) { }
 
 
   ngOnInit() {
@@ -35,7 +37,11 @@ export class ProfilePage implements OnInit {
       password: this.profileData.password,
       discription: this.profileData.description
     });
-    console.log(this.profileForm);
+    if (this.profileData.profilePhotoURL && this.profileData.profilePhotoFileName) {
+      this.file.readAsDataURL(this.profileData.profilePhotoURL, this.profileData.profilePhotoFileName).then(res =>
+        this.userProfileImage = res
+      );
+    }
   }
 
   /**
@@ -57,7 +63,9 @@ export class ProfilePage implements OnInit {
       this.file.readAsDataURL(path, filename).then(res =>
         this.userProfileImage = res
       );
-      this.userProfileImage = imageData;
+      // this.userProfileImage = imageData;
+      this.profileForm.value.profilePhotoURL = path;
+      this.profileForm.value.profilePhotoFileName = File;
       // If it's base64 (DATA_URL):
       // const base64Image = 'data:image/jpeg;base64,' + imageData;
     }, (err) => {
@@ -68,7 +76,8 @@ export class ProfilePage implements OnInit {
   /**
    * @description : after edit on save click it stores data in local storage.
    */
-  public onSaveClick() {
+  async onSaveClick() {
+    this.controllersService.callForAlert('Success', 'Updated Successfully .');
     localStorage.setItem('registerData', JSON.stringify(this.profileForm.value));
   }
   /**
