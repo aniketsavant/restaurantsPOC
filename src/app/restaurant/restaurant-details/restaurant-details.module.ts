@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
+import { AuthGuard } from '../../auth.guard';
 
 import { RestaurantDetailsPage } from './restaurant-details.page';
 import { ReviewsComponent } from './reviews/reviews.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   {
     path: '',
     component: RestaurantDetailsPage,
+    canActivate: [AuthGuard]
   }
 ];
 

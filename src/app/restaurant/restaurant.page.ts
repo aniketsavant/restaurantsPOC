@@ -1,17 +1,15 @@
-import { Component, OnInit, AfterViewInit, AfterContentInit, AfterContentChecked } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from './restaurant.service';
 import { IRestaurantCollection, Restaurant } from './iRestaurants';
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import {
-  NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult,
-  NativeGeocoderOptions
+  NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderOptions
 } from '@ionic-native/native-geocoder/ngx';
-
+import { ControllersService } from '../shared/controllers.service';
 
 /**
- * @description shows list of restaurents by cities
+ * @description shows list of restaurants by cities
  *
  * @export
  * @class RestaurantPage
@@ -23,11 +21,12 @@ import {
   styleUrls: ['./restaurant.page.scss'],
 })
 export class RestaurantPage implements OnInit {
+
   searchtext: string;
   city_id;
   restaurants_collection: Restaurant[];
   favouriteList;
-  lattitude;
+  latitude;
   longitude;
   cityList = [{
     name: 'pune',
@@ -43,30 +42,33 @@ export class RestaurantPage implements OnInit {
   }];
   selectedData;
   loader;
-  constructor(private restaurantService: RestaurantService, private router: Router, private loderCtrl: LoadingController,
-    private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder) {
+
+  constructor(private restaurantService: RestaurantService, private router: Router,
+    private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder, private controllersService: ControllersService) {
   }
 
   /**
    *
-   *
    * @memberof RestaurantPage
    */
-  ngOnInit() {
+  async ngOnInit() {
+    // this.loader = await this.loderCtrl.create({
+    //   message: 'loading restaurants'
+    // });
+    // this.loader.present();
+    this.controllersService.presentLoading();
     this.getLocation();
-    // this.getNearByRestaurents();
   }
 
   /**
    * @description gets current location co-ordinates
-   *
    * @memberof RestaurantPage
    */
   getLocation() {
     this.geolocation.getCurrentPosition().then((resp) => {
-      this.lattitude = resp.coords.latitude;
+      this.latitude = resp.coords.latitude;
       this.longitude = resp.coords.longitude;
-      this.getNearByRestaurents();
+      this.getNearByRestaurants();
       this.getLocationDetails();
     }).catch((error) => {
       console.log('Error getting location', error);
@@ -74,16 +76,15 @@ export class RestaurantPage implements OnInit {
     const watch = this.geolocation.watchPosition();
     watch.subscribe((data) => {
       // data can be a set of coordinates, or an error (if an error occurred).
-      this.lattitude = data.coords.latitude;
+      this.latitude = data.coords.latitude;
       this.longitude = data.coords.longitude;
-      this.getNearByRestaurents();
+      this.getNearByRestaurants();
       this.getLocationDetails();
     });
   }
 
   /**
    * @description shows current location details
-   *
    * @memberof RestaurantPage
    */
   getLocationDetails() {
@@ -91,12 +92,9 @@ export class RestaurantPage implements OnInit {
       useLocale: true,
       maxResults: 5
     };
-    this.nativeGeocoder.reverseGeocode(this.lattitude, this.longitude, options)
+    this.nativeGeocoder.reverseGeocode(this.latitude, this.longitude, options)
       .then((result: NativeGeocoderReverseResult[]) => {
-        //  this.getNearByRestaurents();
-        alert('this is:' + JSON.stringify(result[0]));
-        alert('search text:' + this.searchtext);
-        // console.log(JSON.stringify(result[0]));
+        //  this.getNearByRestaurants();
         this.searchtext = result[0].subLocality + ' ' + result[0].subAdministrativeArea + ','
           + result[0].administrativeArea + ',' + result[0].countryName;
       })
@@ -105,12 +103,12 @@ export class RestaurantPage implements OnInit {
   }
 
   /**
-   * @description Finds near by restaurents according to given GPS co-ordinates
+   * @description Finds near by restaurants according to given GPS co-ordinates
    *
    * @memberof RestaurantPage
    */
-  getNearByRestaurents() {
-    this.restaurantService.getNearByRestaurants(this.lattitude, this.longitude).subscribe(
+  getNearByRestaurants() {
+    this.restaurantService.getNearByRestaurants(this.latitude, this.longitude).subscribe(
       (data: IRestaurantCollection) => {
         this.restaurants_collection = data.restaurants;
         for (const obj of this.restaurants_collection) {
@@ -136,10 +134,6 @@ export class RestaurantPage implements OnInit {
     }
   }
   async onItemClick(res) {
-    this.loader = await this.loderCtrl.create({
-      message: 'loading restaurents'
-    });
-    this.loader.present();
     this.searchtext = res.name;
     this.city_id = res.id;
     this.restaurantService.getRestaurants(this.city_id).subscribe(

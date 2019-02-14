@@ -40,7 +40,7 @@ export class NotificationPage implements OnInit {
   }
 
   /**
-  *@description : for getting offer images
+  * @description : for getting offer images
   */
   public getOfferList() {
     this.notificationService.offerImage().subscribe(data => {

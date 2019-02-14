@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RestaurantService } from '../../restaurant.service';
-import { LoadingController } from '@ionic/angular';
-
+import { ControllersService } from '../../../shared/controllers.service';
+import { from } from 'rxjs';
 @Component({
   selector: 'app-reviews',
   templateUrl: './reviews.component.html',
@@ -15,15 +15,12 @@ export class ReviewsComponent implements OnInit {
   likeStyle: string;
   dislikeStyle: string;
 
-  constructor(private restaurantService: RestaurantService, private loaderCtrl: LoadingController) { }
+  constructor(private restaurantService: RestaurantService, private controllersService: ControllersService) { }
 
   async  ngOnInit() {
-    const loader = await this.loaderCtrl.create({
-      message: 'Loading Reviews'
-    });
+    this.controllersService.presentLoading();
     this.likeStyle = 'none';
     this.dislikeStyle = 'none';
-    loader.present();
     const rest_id = this.restaurantService.restaurant.restaurant.R.res_id;
     this.restaurantService.getReviews(rest_id).subscribe(
       data => {
@@ -39,7 +36,6 @@ export class ReviewsComponent implements OnInit {
         console.log('reviews:', this.reviewsList);
       }
     );
-    loader.dismiss();
   }
 
   /**

@@ -5,43 +5,45 @@
 </ion-header>
 
 <ion-content padding>
+  <form [formGroup]="profileForm" (ngSubmit)="onSaveClick()">
 
-  <ion-grid>
-    <ion-row>
-      <ion-col size='4'>
-        <img src="{{userProfileImage}}" class="userprofileImage">
-        <ion-button size="small" class="taleNewPhoto" (click)="onTakePhotoClick()">Take Photo</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-row>
-          <ion-item no-padding>
-            <ion-input placeholder="User Name"></ion-input>
-          </ion-item>
-        </ion-row>
-        <ion-row>
-          <ion-item no-padding>
-            <ion-input placeholder="First Name"></ion-input>
-          </ion-item>
-        </ion-row>
-        <ion-row>
+    <ion-grid>
+      <ion-row>
+        <ion-col size='4'>
+          <img src="{{userProfileImage}}" class="userprofileImage">
+          <ion-button size="small" class="taleNewPhoto" (click)="onTakePhotoClick()">Take Photo</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-row>
+            <ion-item no-padding>
+              <ion-input placeholder="User Name" formControlName="uName"></ion-input>
+            </ion-item>
+          </ion-row>
+          <ion-row>
+            <ion-item no-padding>
+              <ion-input placeholder="Email Id" formControlName="emailId"></ion-input>
+            </ion-item>
+          </ion-row>
+          <!-- <ion-row>
           <ion-item no-padding>
             <ion-input placeholder="Last name"></ion-input>
           </ion-item>
-        </ion-row>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <div class="horizontalLine"></div>
-  <ion-item>
-    <ion-input type="password" placeholder="Enter New Password"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-textarea placeholder="enter discription about you."></ion-textarea>
-  </ion-item>
-  <br>
-  <ion-button expand="full" color="secondary">Save</ion-button>
-  <ion-button expand="full" color="dark">Check you favourite list </ion-button>
-  <ion-button expand="full" color="dark" (click)="onLogoutClick()">Logout</ion-button>
+        </ion-row> -->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div class="horizontalLine"></div>
+    <ion-item>
+      <ion-input type="password" placeholder="Enter New Password" formControlName="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-textarea placeholder="enter discription about you." formControlName="discription"></ion-textarea>
+    </ion-item>
+    <br>
+    <ion-button type="submit" expand="full" color="secondary">Save</ion-button>
+    <ion-button expand="full" color="dark">Check you favourite list </ion-button>
+    <ion-button expand="full" color="dark" (click)="onLogoutClick()">Logout</ion-button>
 
+  </form>
 
 </ion-content>
