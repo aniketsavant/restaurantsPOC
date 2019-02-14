@@ -94,7 +94,9 @@ export class RestaurantPage implements OnInit {
     this.nativeGeocoder.reverseGeocode(this.lattitude, this.longitude, options)
       .then((result: NativeGeocoderReverseResult[]) => {
         //  this.getNearByRestaurents();
-        // alert('this is:' + result[0]); console.log(JSON.stringify(result[0]));
+        alert('this is:' + JSON.stringify(result[0]));
+        alert('search text:' + this.searchtext);
+        // console.log(JSON.stringify(result[0]));
         this.searchtext = result[0].subLocality + ' ' + result[0].subAdministrativeArea + ','
           + result[0].administrativeArea + ',' + result[0].countryName;
       })

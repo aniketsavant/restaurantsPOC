@@ -20,22 +20,24 @@ export class GallaryComponent implements OnInit {
     private restaurantService: RestaurantService, private camera: Camera) { }
 
   ngOnInit() {
-    this.images = [{ url: `${this.path}1.jpg` },
-    { url: `${this.path}2.JPG` },
-    { url: `${this.path}3.jpg` },
-    { url: `${this.path}3.jpg` },
-    { url: `${this.path}4.jpg` },
-    { url: `${this.path}5.jpg` },
-    { url: `${this.path}6.jpg` },
-    { url: `${this.path}7.jpg` },
-    { url: `${this.path}8.jpg` },
-    { url: `${this.path}9.jpg` },
-    { url: `${this.path}10.jpg` },
-    { url: `${this.path}11.jpg` },
-    { url: `${this.path}12.jpg` },
-    { url: `${this.path}13.jpg` },
-    { url: `${this.path}14.jpg` }
+    this.images = [
+      `${this.path}1.jpg`,
+      `${this.path}2.JPG`,
+      `${this.path}3.jpg`,
+      `${this.path}3.jpg`,
+      `${this.path}4.jpg`,
+      `${this.path}5.jpg`,
+      `${this.path}6.jpg`,
+      `${this.path}7.jpg`,
+      `${this.path}8.jpg`,
+      `${this.path}9.jpg`,
+      `${this.path}10.jpg`,
+      `${this.path}11.jpg`,
+      `${this.path}12.jpg`,
+      `${this.path}13.jpg`,
+      `${this.path}14.jpg`
     ];
+
   }
   slidesDidLoad(slides: IonSlides) {
     slides.startAutoplay();
@@ -43,10 +45,9 @@ export class GallaryComponent implements OnInit {
 
   onShareClick(index) {
     // index = 0;
-    console.log(index);
-    // this.socialSharing.share('hello gayatri', null, null, this.images[index].url);
+    console.log(this.images[index + 1]);
 
-    const imageName = `${index + 1}.jpg`;
+    const imageName = this.images[index + 1];
     const ROOT_DIRECTORY = 'file:///sdcard//';
     const downloadFolderName = 'tempDownloadFolder';
 
@@ -84,7 +85,7 @@ export class GallaryComponent implements OnInit {
       correctOrientation: true,
       encodingType: this.camera.EncodingType.JPEG,
       destinationType: this.camera.DestinationType.FILE_URI
-    }
+    };
 
     this.camera.getPicture(options).then((imageData) => {
       //needs to import file plugin
@@ -92,7 +93,9 @@ export class GallaryComponent implements OnInit {
       const filename = imageData.substring(imageData.lastIndexOf('/') + 1);
       const path = imageData.substring(0, imageData.lastIndexOf('/') + 1);
       //then use the method reasDataURL  btw. var_picture is ur image variable
-      this.file.readAsDataURL(path, filename).then(res => this.image = res);
+      this.file.readAsDataURL(path, filename).then(res => { alert("res"+res); this.images.push(res); });
+
     });
+    this.images.push(`${this.path}15.jpg`);
   }
 }
