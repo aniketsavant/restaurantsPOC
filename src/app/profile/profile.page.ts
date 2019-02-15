@@ -65,7 +65,7 @@ export class ProfilePage implements OnInit {
       );
       // this.userProfileImage = imageData;
       this.profileForm.value.profilePhotoURL = path;
-      this.profileForm.value.profilePhotoFileName = File;
+      this.profileForm.value.profilePhotoFileName = filename;
       // If it's base64 (DATA_URL):
       // const base64Image = 'data:image/jpeg;base64,' + imageData;
     }, (err) => {
