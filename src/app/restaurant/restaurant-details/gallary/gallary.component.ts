@@ -55,34 +55,49 @@ export class GallaryComponent implements OnInit {
     console.log(this.images[index]);
 
     const imageName = this.images[index].substring(this.images[index].lastIndexOf('/') + 1);
+
     console.log(imageName);
+    const flag = this.images[index].includes('assets');
+    console.log('flag', flag);
     const ROOT_DIRECTORY = 'file:///sdcard//';
     const downloadFolderName = 'tempDownloadFolder';
-
-    // Create a folder in memory location
-    this.file.createDir(ROOT_DIRECTORY, downloadFolderName, true)
+    if (this.images[index].includes('assets')) {
+      // Create a folder in memory location
+      this.file.createDir(ROOT_DIRECTORY, downloadFolderName, true)
+        .then((entries) => {
+          // Copy our asset/img/FreakyJolly.jpg to folder we created
+          this.file.copyFile(this.file.applicationDirectory + 'www/assets/gallary/',
+            imageName, ROOT_DIRECTORY + downloadFolderName + '//', imageName)
+            .then((entries) => {
+              // Common sharing event will open all available application to share
+              this.socialSharing.share(`${this.restaurantService.restaurant.restaurant.name} Check delicious food menu of this restaurant`,
+                'Subject', ROOT_DIRECTORY + downloadFolderName + '/' + imageName, this.restaurantService.restaurant.restaurant.menu_url)
+                .then((entries) => {
+                  console.log('success ' + JSON.stringify(entries));
+                })
+                .catch((error) => {
+                  alert('error mesg1 ' + JSON.stringify(error));
+                });
+            })
+            .catch((error) => {
+              alert('error mesg2' + JSON.stringify(error));
+            });
+        })
+        .catch((error) => {
+          alert('error mesg3' + JSON.stringify(error));
+        });
+    } else {
+      // Common sharing event will open all available application to share
+      this.socialSharing.share(`${this.restaurantService.restaurant.restaurant.name} Check delicious food menu of this restaurant`,
+      'Subject', null, this.restaurantService.restaurant.restaurant.menu_url)
       .then((entries) => {
-        // Copy our asset/img/FreakyJolly.jpg to folder we created
-        this.file.copyFile(this.file.applicationDirectory + 'www/assets/gallary/',
-          imageName, ROOT_DIRECTORY + downloadFolderName + '//', imageName)
-          .then((entries) => {
-            // Common sharing event will open all available application to share
-            this.socialSharing.share(`${this.restaurantService.restaurant.restaurant.name} Check delicious food menu of this restaurant`,
-              'Subject', ROOT_DIRECTORY + downloadFolderName + '/' + imageName, this.restaurantService.restaurant.restaurant.menu_url)
-              .then((entries) => {
-                console.log('success ' + JSON.stringify(entries));
-              })
-              .catch((error) => {
-                alert('error mesg1 ' + JSON.stringify(error));
-              });
-          })
-          .catch((error) => {
-            alert('error mesg2' + JSON.stringify(error));
-          });
+        console.log('success ' + JSON.stringify(entries));
       })
       .catch((error) => {
-        alert('error mesg3' + JSON.stringify(error));
+        alert('error mesg1 ' + JSON.stringify(error));
       });
+    }
+
   }
 
   /**
@@ -105,6 +120,5 @@ export class GallaryComponent implements OnInit {
       const path = imageData.substring(0, imageData.lastIndexOf('/') + 1);
       this.file.readAsDataURL(path, filename).then(res => this.images.push(res));
     });
-    this.images.push(`${this.path}15.jpg`);
   }
 }

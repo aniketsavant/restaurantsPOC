@@ -38,10 +38,12 @@ export class RestaurantPage implements OnInit {
   {
     name: 'patna',
     id: '40'
+  },
+  {
+    name: 'rajkot',
+    id: '11294'
   }];
   selectedData;
-  loader;
-
   constructor(private restaurantService: RestaurantService, private router: Router,
     private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder, private controllersService: ControllersService) {
   }
@@ -120,7 +122,7 @@ export class RestaurantPage implements OnInit {
    * @memberof RestaurantPage
    */
   search() {
-    if (this.searchtext.length >= 1) {
+    if (this.searchtext !== undefined && this.searchtext.length >= 1) {
       this.selectedData = this.cityList.filter(a => {
         return a.name.includes(this.searchtext.toLowerCase());
       });
@@ -147,11 +149,10 @@ export class RestaurantPage implements OnInit {
       error => console.error('Error is', error)
     ),
       this.selectedData = [];
-    this.loader.dismiss();
   }
-  removeFocus() {
-    this.selectedData = [];
-  }
+  // removeFocus() {
+  //   this.selectedData = [];
+  // }
 
   /**
    * @description changes favourites icon on click
