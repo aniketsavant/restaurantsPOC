@@ -89,7 +89,7 @@ export class GallaryComponent implements OnInit {
     } else {
       // Common sharing event will open all available application to share
       this.socialSharing.share(`${this.restaurantService.restaurant.restaurant.name} Check delicious food menu of this restaurant`,
-      'Subject', null, this.restaurantService.restaurant.restaurant.menu_url)
+      'image', this.images[index], this.restaurantService.restaurant.restaurant.menu_url)
       .then((entries) => {
         console.log('success ' + JSON.stringify(entries));
       })
